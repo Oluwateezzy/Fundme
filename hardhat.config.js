@@ -9,13 +9,14 @@ require("dotenv").config();
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
     solidity: {
-        compilers: [{ version: "0.8.17" }, { version: "0.6.0" }],
+        compilers: [{ version: "0.8.17" }, { version: "0.6.6" }],
     },
     networks: {
-        rinbeky: {
+        rinkeby: {
             url: process.env.RINKEBY || "",
             accounts: [process.env.PRIVATEKEY],
             chainId: 4,
+            blockConfirmations: 6,
         },
     },
     gasReporter: {
@@ -23,6 +24,8 @@ module.exports = {
         currency: "USD",
         outputFile: "gas_report.txt",
         noColors: true,
+        coinmarketcap: process.env.GASREPORTER,
+        token: "MATIC",
     },
     etherscan: {
         apiKey: process.env.ETHERSCANKEY,
